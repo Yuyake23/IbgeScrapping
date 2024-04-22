@@ -39,21 +39,19 @@ public class DistritoService {
         return this.saveAll(distritos);
     }
 
-    public Distrito save(Distrito distrito) {
-        Municipio municipio = distrito.getMunicipio();
+    public Distrito save(Distrito entity) {
+        Municipio municipio = entity.getMunicipio();
         boolean municipioExiste = this.municipioService.existsById(municipio.getId());
 
         if (!municipioExiste) {
-            distrito.setMunicipio(this.municipioService.save(municipio));
-            //TODO: remover linha debaixo (teste)
-            distrito.setMunicipio(null);
+            entity.setMunicipio(this.municipioService.save(municipio));
         }
 
-        return this.distritoRepository.save(distrito);
+        return this.distritoRepository.save(entity);
     }
 
-    public List<Distrito> saveAll(List<Distrito> distritos) {
-        return distritos.stream()
+    public List<Distrito> saveAll(List<Distrito> entities) {
+        return entities.stream()
                 .map(this::save)
                 .collect(Collectors.toCollection(ArrayList::new));
     }

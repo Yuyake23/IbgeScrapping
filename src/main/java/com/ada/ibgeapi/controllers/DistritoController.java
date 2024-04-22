@@ -14,13 +14,6 @@ public class DistritoController {
     @Autowired
     private DistritoService distritoService;
 
-    @GetMapping("/{codigoIbge}")
-    @ResponseStatus(HttpStatus.OK)
-    public List<Distrito> consultarDistritosWebFlux(@PathVariable String codigoIbge) {
-        List<Distrito> distritos = distritoService.consultarDistritos(codigoIbge);
-        return distritos;
-    }
-
     @PostMapping("/{codigoIbge}")
     @ResponseStatus(HttpStatus.OK)
     public List<Distrito> sugarDistritosWebFlux(@PathVariable String codigoIbge) {
